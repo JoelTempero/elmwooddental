@@ -11,6 +11,7 @@ export default function Testimonials() {
       <PageHero
         title="Testimonials"
         image="https://elmwooddental.co.nz/wp-content/uploads/2024/12/Elmwood-Dental-Christchurch-New-Zealand-scaled.jpeg"
+        imagePosition="center 20%"
       />
 
       <section className="py-16 md:py-24">

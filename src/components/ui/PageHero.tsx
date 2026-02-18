@@ -4,9 +4,10 @@ interface PageHeroProps {
   title: string
   subtitle?: string
   image?: string
+  imagePosition?: string
 }
 
-export default function PageHero({ title, subtitle, image }: PageHeroProps) {
+export default function PageHero({ title, subtitle, image, imagePosition }: PageHeroProps) {
   const bgImage = image || 'https://elmwooddental.co.nz/wp-content/uploads/2023/03/BB18c.jpeg'
 
   return (
@@ -16,6 +17,7 @@ export default function PageHero({ title, subtitle, image }: PageHeroProps) {
         alt=""
         role="presentation"
         className="absolute inset-0 w-full h-full object-cover"
+        style={imagePosition ? { objectPosition: imagePosition } : undefined}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary/60 to-primary/30" />
       <div className="relative z-10 w-full">

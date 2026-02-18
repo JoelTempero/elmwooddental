@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elmwood Dental | Christchurch's Premier Dental Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF8F5;
+            --warm-white: #FFFEFB;
+            --sage: #9CAF94;
+            --sage-dark: #7A9172;
+            --charcoal: #2D3436;
+            --charcoal-light: #4A5154;
+            --gold: #C4A962;
+            --gold-light: #E8DDB5;
+            --blush: #F5E6E0;
+            --shadow: rgba(45, 52, 54, 0.08);
+            --shadow-strong: rgba(45, 52, 54, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .serif-italic {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .text-center { text-align: center; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .animate-delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .animate-delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .animate-delay-3 { animation-delay: 0.6s; opacity: 0; }
+        .animate-delay-4 { animation-delay: 0.8s; opacity: 0; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 254, 251, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .logo span {
+            color: var(--sage-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--charcoal);
+            color: var(--warm-white) !important;
+            padding: 1rem 2rem !important;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--sage-dark);
+            transform: translateY(-2px);
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-menu-btn span {
+            width: 28px;
+            height: 2px;
+            background: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 50%, var(--blush) 100%);
+            overflow: hidden;
+        }
+
+        .hero-bg-elements {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid var(--gold-light);
+        }
+
+        .hero-circle-1 {
+            width: 600px;
+            height: 600px;
+            right: -200px;
+            top: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-circle-2 {
+            width: 400px;
+            height: 400px;
+            right: 10%;
+            bottom: 10%;
+            animation: float 6s ease-in-out infinite 1s;
+        }
+
+        .hero-circle-3 {
+            width: 200px;
+            height: 200px;
+            left: 10%;
+            bottom: 20%;
+            background: linear-gradient(135deg, var(--sage) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: float 7s ease-in-out infinite 0.5s;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            padding: 8rem 0;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
+        }
+
+        .hero h1 .highlight {
+            color: var(--sage-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0.1em;
+            left: 0;
+            right: 0;
+            height: 0.3em;
+            background: var(--gold-light);
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--charcoal-light);
+            max-width: 500px;
+            margin-bottom: 3rem;
+            line-height: 1.9;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--charcoal);
+            color: var(--warm-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--sage-dark);
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 1px solid var(--charcoal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--charcoal);
+            color: var(--warm-white);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 600px;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0 0 0 80px;
+            box-shadow: 0 40px 80px var(--shadow-strong);
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, var(--sage) 0%, var(--sage-dark) 100%);
+            border-radius: 0 0 0 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-stats {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background: var(--warm-white);
+            padding: 2rem 2.5rem;
+            box-shadow: 0 20px 60px var(--shadow-strong);
+            display: flex;
+            gap: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--sage-dark);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--charcoal-light);
+            margin-top: 0.5rem;
+        }
+
+        .hero-accent {
+            position: absolute;
+            top: 40px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            padding: 4rem 0;
+            background: var(--warm-white);
+            border-top: 1px solid rgba(196, 169, 98, 0.2);
+            border-bottom: 1px solid rgba(196, 169, 98, 0.2);
+        }
+
+        .trust-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--charcoal-light);
+            font-size: 0.85rem;
+        }
+
+        .trust-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            padding: 10rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 8rem;
+            align-items: center;
+        }
+
+        .philosophy-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.15;
+        }
+
+        .philosophy-content .lead {
+            font-size: 1.3rem;
+            color: var(--charcoal-light);
+            margin-bottom: 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+        }
+
+        .philosophy-content p {
+            color: var(--charcoal-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-visual {
+            position: relative;
+        }
+
+        .philosophy-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--blush) 0%, var(--cream) 100%);
+            border-radius: 0 80px 0 80px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .philosophy-quote {
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            background: var(--charcoal);
+            color: var(--warm-white);
+            padding: 3rem;
+            max-width: 350px;
+        }
+
+        .philosophy-quote p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy-quote cite {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 10rem 0;
+            background: var(--charcoal);
+            color: var(--warm-white);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .service-card p {
+            opacity: 0.7;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: gap 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 10rem 0;
+            background: var(--cream);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .team-card {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .team-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(145deg, var(--sage) 0%, var(--sage-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .team-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(45, 52, 54, 0.9) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .team-card:hover .team-overlay {
+            opacity: 1;
+        }
+
+        .team-bio {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover .team-bio {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .team-bio p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .team-info {
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-info span {
+            font-size: 0.8rem;
+            color: var(--sage-dark);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 10rem 0;
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--blush) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 4rem auto 0;
+        }
+
+        .testimonial {
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .testimonial-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8rem;
+            color: var(--gold-light);
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .author-info span {
+            font-size: 0.8rem;
+            color: var(--charcoal-light);
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 3rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gold-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+
+        /* Booking Section */
+        .booking {
+            padding: 10rem 0;
+            background: var(--charcoal);
+            color: var(--warm-white);
+            position: relative;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .booking-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .booking-content p {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            line-height: 1.9;
+        }
+
+        .booking-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .booking-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .booking-features li::before {
+            content: '✓';
+            width: 30px;
+            height: 30px;
+            background: var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .booking-form-container {
+            background: var(--warm-white);
+            padding: 3rem;
+            color: var(--charcoal);
+        }
+
+        .booking-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal-light);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(45, 52, 54, 0.2);
+            background: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sage);
+            box-shadow: 0 0 0 3px rgba(156, 175, 148, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--charcoal);
+            color: var(--warm-white);
+            padding: 1.25rem;
+            border: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--sage-dark);
+        }
+
+        /* Location Section */
+        .location {
+            padding: 10rem 0;
+            background: var(--cream);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: stretch;
+        }
+
+        .location-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .location-details {
+            margin-bottom: 2rem;
+        }
+
+        .location-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(45, 52, 54, 0.1);
+        }
+
+        .location-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .location-item h4 {
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .location-item p {
+            color: var(--charcoal-light);
+            font-size: 0.95rem;
+        }
+
+        .location-map {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 0 80px 0 80px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--warm-white);
+            padding: 6rem 0 3rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo {
+            color: var(--warm-white);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--sage);
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.6;
+            font-size: 0.85rem;
+        }
+
+        /* Free Dental Banner */
+        .free-banner {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+            color: white;
+            padding: 4rem;
+            text-align: center;
+            margin: 10rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .free-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .free-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .free-banner p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .free-banner .btn {
+            background: white;
+            color: var(--sage-dark);
+            position: relative;
+        }
+
+        .free-banner .btn:hover {
+            background: var(--charcoal);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text {
+                order: 2;
+            }
+
+            .hero-visual {
+                order: 1;
+                height: 400px;
+            }
+
+            .hero-eyebrow {
+                justify-content: center;
+            }
+
+            .hero-eyebrow::before {
+                display: none;
+            }
+
+            .hero-description {
+                margin: 0 auto 3rem;
+            }
+
+            .hero-ctas {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .philosophy-grid,
+            .booking-grid,
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 4rem auto 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">Elmwood <span>Dental</span></a>
+        <ul class="nav-links">
+            <li><a href="#philosophy">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#testimonials">Stories</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#booking" class="nav-cta">Book Now</a></li>
+        </ul>
+        <button class="mobile-menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-elements">
+            <div class="hero-circle hero-circle-1"></div>
+            <div class="hero-circle hero-circle-2"></div>
+            <div class="hero-circle hero-circle-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-eyebrow animate-fade-up">Christchurch's Trusted Dental Practice</div>
+                    <h1 class="animate-fade-up animate-delay-1">Where Your <span class="highlight">Smile</span> Becomes Our Masterpiece</h1>
+                    <p class="hero-description animate-fade-up animate-delay-2">
+                        Since 1993, we've been crafting confident smiles in the heart of Strowan. 
+                        Experience dental care that feels like a sanctuary — gentle, precise, and 
+                        tailored entirely to you.
+                    </p>
+                    <div class="hero-ctas animate-fade-up animate-delay-3">
+                        <a href="#booking" class="btn btn-primary"><span>Book Your Visit</span></a>
+                        <a href="tel:033552348" class="btn btn-secondary">Call 03 355 2348</a>
+                    </div>
+                </div>
+                <div class="hero-visual animate-fade-up animate-delay-4">
+                    <div class="hero-image-container">
+                        <div class="hero-image-placeholder">
+                            Modern, light-filled dental surgery<br>at 6 Wairakei Road
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-number">30+</div>
+                                <div class="stat-label">Years of Care</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4</div>
+                                <div class="stat-label">Expert Dentists</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">∞</div>
+                                <div class="stat-label">Smiles Created</div>
+                            </div>
+                        </div>
+                        <div class="hero-accent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-content">
+                <div class="trust-item">
+                    <div class="trust-icon">🏆</div>
+                    <div>
+                        <strong>NZDA President</strong><br>
+                        <span style="opacity: 0.7; font-size: 0.8rem;">Dr Susan Gorrie, Honorary Life Member</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">✓</div>
+                    <div>
+                        <strong>ACC Accredited</strong><br>
+                        <span style="opacity: 0.7; font-size: 0.8rem;">Dental accident provider</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🎓</div>
+                    <div>
+                        <strong>Free High School Dental</strong><br>
+                        <span style="opacity: 0.7; font-size: 0.8rem;">Community commitment</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">♿</div>
+                    <div>
+                        <strong>Full Accessibility</strong><br>
+                        <span style="opacity: 0.7; font-size: 0.8rem;">Lift & parking on-site</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philosophy-content">
+                    <h2>Dental Care, <br><span class="serif-italic">Reimagined</span></h2>
+                    <p class="lead">"We believe oral health is an integral part of your overall wellbeing — not just a checkup."</p>
+                    <p>
+                        At Elmwood Dental, we've spent three decades perfecting the art of gentle, 
+                        comprehensive dental care. Our purpose-built surgery on Wairakei Road is 
+                        designed to feel different — light, spacious, and calming.
+                    </p>
+                    <p>
+                        Every member of our team, from our experienced dentists to our welcoming 
+                        reception staff, is united by a single purpose: to help you feel at ease 
+                        while delivering exceptional results.
+                    </p>
+                    <a href="#team" class="btn btn-secondary" style="margin-top: 1rem;">Meet Our Team</a>
+                </div>
+                <div class="philosophy-visual">
+                    <div class="philosophy-image">
+                        Light-filled, modern treatment rooms
+                    </div>
+                    <div class="philosophy-quote">
+                        <p>"After 20 years of being self-conscious, I finally have a stunning new smile. Beata went the distance."</p>
+                        <cite>— Patient Testimonial</cite>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Dental Banner -->
+    <div class="container">
+        <div class="free-banner">
+            <h2>Free Dental Care for High School Students</h2>
+            <p>
+                We're committed to our community. All high school aged children receive 
+                free basic dental care, plus free emergency services for all children.
+            </p>
+            <a href="#booking" class="btn">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Our Services</div>
+                <h2 class="section-title">Comprehensive Care, <br>Exceptional Results</h2>
+                <p class="section-subtitle">From routine checkups to complete smile transformations, 
+                    we offer the full spectrum of modern dentistry.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🦷</div>
+                    <h3>General Dentistry</h3>
+                    <p>Comprehensive examinations, hygiene services, white and silver fillings — 
+                        the foundation of lifelong oral health.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Cosmetic Dentistry</h3>
+                    <p>Teeth whitening, veneers, and smile makeovers. Because your smile 
+                        deserves to be as confident as you are.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👑</div>
+                    <h3>Crowns & Bridges</h3>
+                    <p>Restore damaged teeth with precision-crafted ceramic, porcelain, 
+                        or gold restorations that last.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Dental Implants</h3>
+                    <p>The gold standard for replacing missing teeth. Surgically placed 
+                        and restored to blend seamlessly with your smile.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💤</div>
+                    <h3>IV Sedation</h3>
+                    <p>Anxious about dental visits? Our sedation options help you relax 
+                        completely while we take care of everything.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🆘</div>
+                    <h3>Emergency Care</h3>
+                    <p>Broken tooth? Sudden pain? We're here for urgent dental needs, 
+                        with prompt and compassionate care.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow" style="color: var(--sage-dark);">Our Team</div>
+                <h2 class="section-title" style="color: var(--charcoal);">Meet Your <br><span class="serif-italic">Dental Experts</span></h2>
+                <p class="section-subtitle" style="color: var(--charcoal-light);">
+                    Four experienced dentists, each bringing unique expertise and a shared 
+                    commitment to your comfort.
+                </p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-image-placeholder">SA</div>
+                        <div class="team-overlay"></div>
+                        <div class="team-bio">
+                            <p>Bachelor's in Dentistry (2008), Master's in Oral Medicine. 
+                                Passionate about building patient relationships based on 
+                                trust and open communication.</p>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Sherin Allan</h3>
+                        <span>General & Aesthetic Dentistry</span>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-image-placeholder">SG</div>
+                        <div class="team-overlay"></div>
+                        <div class="team-bio">
+                            <p>30+ years experience. Former President of the NZ Dental Association 
+                                and Honorary Life Member. Postgraduate diploma in restorative dentistry.</p>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Susan Gorrie</h3>
+                        <span>Restorative Specialist</span>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-image-placeholder">BB</div>
+                        <div class="team-overlay"></div>
+                        <div class="team-bio">
+                            <p>Medical degree (Hungary), dental qualification from Otago. 
+                                Special interest in cosmetic dentistry. Gentle approach with 
+                                a focus on minimal intervention.</p>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Beata Baumann</h3>
+                        <span>Cosmetic Dentistry</span>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <div class="team-image-placeholder">KB</div>
+                        <div class="team-overlay"></div>
+                        <div class="team-bio">
+                            <p>Former Registered Nurse. Specialises in difficult extractions, 
+                                wisdom teeth, and IV sedation. Currently studying Post Graduate 
+                                Diploma in Implants.</p>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Kristine Bettle</h3>
+                        <span>Oral Surgery & Implants</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow" style="color: var(--sage-dark);">Patient Stories</div>
+                <h2 class="section-title" style="color: var(--charcoal);">What Our Patients Say</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p class="testimonial-quote">
+                        Easily the best dentist I've ever been to by a country mile! 
+                        The whole staff were super friendly & really helpful, going beyond & above. 
+                        They made what's usually a pretty unpleasant experience at the dentist 
+                        really good... almost enjoyable!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <h4>Jo B.</h4>
+                            <span>Verified Patient</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking" id="booking">
+        <div class="container">
+            <div class="booking-grid">
+                <div class="booking-content">
+                    <h2>Your Journey to a <br><span class="serif-italic">Healthier Smile</span></h2>
+                    <p>
+                        Whether you're due for a routine checkup or ready to transform your smile, 
+                        booking with us is simple. Choose your preferred time online, or call our 
+                        friendly team who'll find the perfect appointment for you.
+                    </p>
+                    <ul class="booking-features">
+                        <li>Comprehensive new patient examinations</li>
+                        <li>Same-day emergency appointments available</li>
+                        <li>Covered parking under the building</li>
+                        <li>Lift access for easy accessibility</li>
+                        <li>WINZ funding accepted</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; opacity: 0.7;">
+                        <strong>Hours:</strong> Mon, Wed, Thu 8:30am-5pm | Tue 8:30am-7pm | Fri 8am-6pm
+                    </p>
+                </div>
+                <div class="booking-form-container">
+                    <h3>Request an Appointment</h3>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" placeholder="Your first name">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" placeholder="Your last name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" placeholder="you@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" placeholder="Your phone number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Service Required</label>
+                            <select>
+                                <option>Select a service...</option>
+                                <option>New Patient Examination</option>
+                                <option>Routine Checkup & Clean</option>
+                                <option>Emergency / Toothache</option>
+                                <option>Cosmetic Consultation</option>
+                                <option>Implant Consultation</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Dentist (Optional)</label>
+                            <select>
+                                <option>No preference</option>
+                                <option>Dr Sherin Allan</option>
+                                <option>Dr Susan Gorrie</option>
+                                <option>Dr Beata Baumann</option>
+                                <option>Dr Kristine Bettle</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Notes</label>
+                            <textarea rows="3" placeholder="Anything we should know?"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Request Appointment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="contact">
+        <div class="container">
+            <div class="location-grid">
+                <div class="location-info">
+                    <h2>Visit Our <span class="serif-italic">Practice</span></h2>
+                    <div class="location-details">
+                        <div class="location-item">
+                            <div class="location-icon">📍</div>
+                            <div>
+                                <h4>Address</h4>
+                                <p>6 Wairakei Road, Strowan<br>Christchurch 8052, New Zealand</p>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <div class="location-icon">📞</div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p><a href="tel:033552348" style="color: inherit; text-decoration: none;">03 355 2348</a></p>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <div class="location-icon">✉️</div>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:reception@elmwooddental.nz" style="color: inherit; text-decoration: none;">reception@elmwooddental.nz</a></p>
+                            </div>
+                        </div>
+                        <div class="location-item">
+                            <div class="location-icon">🅿️</div>
+                            <div>
+                                <h4>Parking</h4>
+                                <p>Covered parking under the building. Turn left heading east on Wairakei Rd.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="location-map">
+                    <div style="text-align: center;">
+                        <p style="font-size: 1.5rem; margin-bottom: 1rem;">📍</p>
+                        <p>Interactive Map<br><span style="opacity: 0.8; font-size: 0.9rem;">6 Wairakei Road, Strowan</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Elmwood <span>Dental</span></a>
+                    <p>
+                        Christchurch's trusted dental practice since 1993. 
+                        Where your smile becomes our masterpiece.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">FB</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">G</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">General Dentistry</a></li>
+                        <li><a href="#">Cosmetic Dentistry</a></li>
+                        <li><a href="#">Dental Implants</a></li>
+                        <li><a href="#">Crowns & Bridges</a></li>
+                        <li><a href="#">Emergency Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Information</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">WINZ Funding</a></li>
+                        <li><a href="#">Free Student Dental</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Hours</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Mon: 8:30am - 5pm</a></li>
+                        <li><a href="#">Tue: 8:30am - 7pm</a></li>
+                        <li><a href="#">Wed: 8:30am - 5pm</a></li>
+                        <li><a href="#">Thu: 8:30am - 5pm</a></li>
+                        <li><a href="#">Fri: 8am - 6pm</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Elmwood Dental. All rights reserved.</p>
+                <p>Designed with care in Christchurch</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.service-card, .team-card, .location-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+
+        // Testimonial dots interaction (demo)
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

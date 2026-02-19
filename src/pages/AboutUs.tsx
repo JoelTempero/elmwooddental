@@ -11,7 +11,8 @@ export default function AboutUs() {
       <title>About Us - Elmwood Dental</title>
       <PageHero
         title="About Us"
-        image="https://elmwooddental.co.nz/wp-content/uploads/2023/03/Elmwood03header.jpeg"
+        image="https://elmwooddental.co.nz/wp-content/uploads/2023/08/IMG-7526-scaled.jpg"
+        imagePosition="center 25%"
       />
 
       {/* Intro */}

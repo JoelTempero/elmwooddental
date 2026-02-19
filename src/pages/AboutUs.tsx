@@ -12,7 +12,7 @@ export default function AboutUs() {
       <PageHero
         title="About Us"
         image="https://elmwooddental.co.nz/wp-content/uploads/2023/08/IMG-7526-scaled.jpg"
-        imagePosition="center 25%"
+        imagePosition="center 70%"
       />
 
       {/* Intro */}
